@@ -5,6 +5,7 @@ class Battle() {
 
     var counterTerrorists: Team = Team(10, "Counter-Terrorists")
     var terrorists: Team = Team(10, "Terrorists")
+    var whoStart: Boolean = Random.nextBoolean()
 
     var isGameOver: Boolean = false
 
@@ -33,19 +34,27 @@ class Battle() {
     }
 
     fun battle(){
-        for (counter in counterTerrorists.team){
-            fight(counter)
-
+        if (whoStart){
+            println("Ход Counter-Terrorists\n")
+            battleIteration(counterTerrorists.team)
+            println("Ход Terrorists\n")
+            battleIteration(terrorists.team)
+        } else{
+            println("Ход Terrorists\n")
+            battleIteration(terrorists.team)
+            println("Ход Counter-Terrorists\n")
+            battleIteration(counterTerrorists.team)
         }
-        for (terrorist in terrorists.team){
-            fight(terrorist)
-        }
-        Thread.sleep(3000)
+        Thread.sleep(1000)
         println()
         getStatusBattle()
         if (counterTerrorists.team.isEmpty()||terrorists.team.isEmpty()) isGameOver = true
+    }
 
-
+    fun battleIteration(team: MutableList<Warrior>){
+        for (warrior in team){
+            fight(warrior)
+        }
     }
 
 }

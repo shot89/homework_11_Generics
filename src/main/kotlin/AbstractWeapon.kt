@@ -5,7 +5,6 @@ open class AbstractWeapon(
 ) {
     var ammoClip: Stack<Ammo> = Stack()
 
-    //    var ammoClipIsEmpty: Boolean = ammoClip.isEmpty()
     open fun createBullet(): Ammo {
         return Ammo.STANDARD
     }
@@ -22,13 +21,12 @@ open class AbstractWeapon(
         var tmp: MutableList<Ammo> = mutableListOf()
         if (!ammoClip.isEmpty()) {
             if (fireType is FireType.BurstShooting) {
-                for (i in 0..(fireType as FireType.BurstShooting).countShot - 1) {
+                for (i in 0..(fireType as FireType.BurstShooting).countShot -1) {
                     if (!ammoClip.isEmpty()) tmp.add(ammoClip.pop())
                     else{
                         recharge()
                         break
                     }
-
                 }
                 return tmp
             } else {
