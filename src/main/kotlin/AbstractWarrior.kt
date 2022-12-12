@@ -13,15 +13,16 @@ abstract class AbstractWarrior(
     override var isKilled = false
 
     override fun attack(enemy: Warrior) {
-        for (bullet in weapons.getBullet()){
-            if (!weapons.ammoClip.isEmpty() && hitProbability.probability() && !enemy.chanceOfHit.probability()) {
+        var bullets = weapons.getBullet()
+        for (bullet in bullets){
+            if (hitProbability.probability() && !enemy.chanceOfHit.probability()) {
                 var damage = bullet.currentDamage()
                 enemy.getHit(damage)
                 println("$this нанес урон $damage $enemy")
+            }else{
+                println("$this промахнулся по $enemy")
             }
-            println("$this промахнулся по $enemy")
         }
-
     }
 
     override fun getHit(damage: Int) {

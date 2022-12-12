@@ -1,12 +1,6 @@
 import kotlin.random.Random
 
 fun main(args: Array<String>) {
-//    var counterTerrorists = Team(10, "Counter-Terrorists")
-//    var terrorists = Team(10, "Terrorists")
-////    BattleState.progress(counterTerrorists).printProgress()
-////    BattleState.CounterTerroristsWin(terrorists).printWin()
-////    println(terrorists.team.isEmpty())
-//    BattleState.NothingWin(counterTerrorists,terrorists)
 
     var battle = Battle()
     while (!battle.isGameOver){
@@ -47,7 +41,7 @@ object Weapons {
                 recharge()
             }
             override fun createBullet(): Ammo {
-                return Ammo.BREAKING
+                return Ammo.STANDARD
             }
         }
     }
@@ -57,7 +51,7 @@ object Weapons {
                 recharge()
             }
             override fun createBullet(): Ammo {
-                return Ammo.ARMORPIECING
+                return Ammo.BREAKING
             }
         }
     }

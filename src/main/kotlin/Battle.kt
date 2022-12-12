@@ -34,17 +34,10 @@ class Battle() {
     }
 
     fun battle(){
-        if (whoStart){
-            println("Ход Counter-Terrorists\n")
-            battleIteration(counterTerrorists.team)
-            println("Ход Terrorists\n")
-            battleIteration(terrorists.team)
-        } else{
-            println("Ход Terrorists\n")
-            battleIteration(terrorists.team)
-            println("Ход Counter-Terrorists\n")
-            battleIteration(counterTerrorists.team)
-        }
+        println(if (whoStart) "Ход Counter-Terrorists\n" else "Ход Terrorists\n")
+        battleIteration(if (whoStart) counterTerrorists.team else terrorists.team)
+        println(if (whoStart) "Ход Terrorists\n" else "Ход Counter-Terrorists\n")
+        battleIteration(if (whoStart) terrorists.team else counterTerrorists.team)
         Thread.sleep(1000)
         println()
         getStatusBattle()

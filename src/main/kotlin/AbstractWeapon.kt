@@ -21,9 +21,10 @@ open class AbstractWeapon(
         var tmp: MutableList<Ammo> = mutableListOf()
         if (!ammoClip.isEmpty()) {
             if (fireType is FireType.BurstShooting) {
-                for (i in 0..(fireType as FireType.BurstShooting).countShot -1) {
-                    if (!ammoClip.isEmpty()) tmp.add(ammoClip.pop())
-                    else{
+                for (i in 0..(fireType as FireType.BurstShooting).countShot - 1) {
+                    if (tmp.add(ammoClip.pop()))
+                    else {
+                        println("ПЕРЕЗАРЯДКА")
                         recharge()
                         break
                     }
@@ -34,8 +35,9 @@ open class AbstractWeapon(
                 return tmp
             }
         } else {
+            println("ПЕРЕЗАРЯДКА")
             recharge()
-            return getBullet()
+            return mutableListOf()
         }
     }
 
